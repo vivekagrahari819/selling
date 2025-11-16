@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -22,6 +21,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'user'     // if not admin, treat as user
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -32,7 +36,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// Update the updatedAt field before saving
 userSchema.pre('save', function(next) {
     this.updatedAt = Date.now();
     next();
