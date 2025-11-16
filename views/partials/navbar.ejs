@@ -47,9 +47,11 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-primary" style="font-weight: bold;">
         <div class="container-fluid">
           <a class="navbar-brand text-light" href="/">Selling.com</a>
+      
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
+      
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link text-light" href="/">Home</a></li>
@@ -59,13 +61,24 @@
               <% if (!user) { %>
                 <li class="nav-item"><a class="nav-link text-light" href="/login">Login</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="/register">Register</a></li>
+      
+             
+      
               <% } else { %>
+      
+                <!-- If Logged in User is Admin -->
+                <% if (user.role === 'admin') { %>
+                  <li class="nav-item"><a class="nav-link text-light fw-bold" href="/admin/dashboard">Admin Dashboard</a></li>
+                <% } %>
+      
                 <li class="nav-item">
-                  <span class="nav-link text-light">Welcome, <%= user.name %> (<%= user.email %>)</span>
+                  <span class="nav-link text-light">Welcome, <%= user.name %></span>
                 </li>
                 <li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
               <% } %>
+      
             </ul>
+      
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search">
               <button class="btn btn-dark" type="submit">Search</button>
@@ -73,6 +86,7 @@
           </div>
         </div>
       </nav>
+      
       
 
     </body>
