@@ -14,346 +14,90 @@
             --success-color: #4bb543;
             --error-color: #ff3333;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .register-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 450px;
-        }
-        
-        .register-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .register-header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .register-header p {
-            opacity: 0.9;
-        }
-        
-        .register-body {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        
-        .form-control {
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid #e1e5ee;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
-        }
-        
-        .input-icon {
-            position: absolute;
-            right: 15px;
-            top: 40px;
-            color: #6c757d;
-        }
-        
-        .btn-register {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            width: 100%;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
-        }
-        
-        .btn-register:active {
-            transform: translateY(0);
-        }
-        
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #6c757d;
-        }
-        
-        .login-link a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-        
-        .alert {
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .alert-success {
-            background-color: rgba(75, 181, 67, 0.1);
-            color: var(--success-color);
-            border: 1px solid rgba(75, 181, 67, 0.2);
-        }
-        
-        .alert-error {
-            background-color: rgba(255, 51, 51, 0.1);
-            color: var(--error-color);
-            border: 1px solid rgba(255, 51, 51, 0.2);
-        }
-        
-        .password-strength {
-            height: 5px;
-            border-radius: 5px;
-            margin-top: 5px;
-            background-color: #e9ecef;
-            overflow: hidden;
-        }
-        
-        .strength-bar {
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s, background-color 0.3s;
-        }
-        
-        .strength-weak {
-            background-color: #ff4757;
-            width: 33%;
-        }
-        
-        .strength-medium {
-            background-color: #ffa502;
-            width: 66%;
-        }
-        
-        .strength-strong {
-            background-color: #2ed573;
-            width: 100%;
-        }
-        
-        .terms-check {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .terms-check input {
-            margin-right: 10px;
-            margin-top: 3px;
-        }
-        
-        .terms-check label {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-        
-        .terms-check a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .terms-check a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 576px) {
-            .register-container {
-                max-width: 100%;
-            }
-            
-            .register-body {
-                padding: 20px;
-            }
-        }
+        body { background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; display: flex; 
+            align-items: center; justify-content: center; padding: 20px; font-family: 'Segoe UI'; }
+        .register-container { background: white; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden; width: 100%; max-width: 450px; }
+        .register-header { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+            color: white; padding: 30px; text-align: center; }
+        .register-body { padding: 30px; }
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-control { padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e5ee; }
+        .btn-register { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+            color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; width: 100%; }
+        .alert-success { background-color: #d1f7d6; color: #2d7a32; }
+        .alert-error { background-color: #ffd6d6; color: #b30000; }
     </style>
 </head>
 <body>
-
-    
 
     <div class="register-container">
         <div class="register-header">
             <h1>Create Account</h1>
             <p>Join our community today</p>
         </div>
-        
+
         <div class="register-body">
-            <% if (typeof message !== 'undefined' && message) { %>
-                <div class="alert alert-<%= messageType || 'success' %>">
-                    <%= message %>
-                </div>
-            <% } %>
             
+            <% if (message) { %>
+                <div class="alert alert-<%= messageType %>"><%= message %></div>
+            <% } %>
+
             <form id="registerForm" action="/register" method="POST">
+
                 <div class="form-group">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" name="fullName" required>
-                    <i class="fas fa-user input-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    <i class="fas fa-envelope input-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone">
-                    <i class="fas fa-phone input-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <i class="fas fa-lock input-icon"></i>
-                    <div class="password-strength">
-                        <div class="strength-bar" id="passwordStrength"></div>
-                    </div>
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" name="fullName" required>
                 </div>
 
-                <!-- <div class="form-group">
-                    <label for="role" class="form-label">Register As</label>
-                    <select class="form-control" id="role" name="role" required>
-                      <option value="user">User</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                  </div> -->
-                  
-                
                 <div class="form-group">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" class="form-control" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <% if (!adminExists) { %>
+                    <!-- Admin can be created only if no admin exists -->
+                    <div class="form-group">
+                        <label>Register As</label>
+                        <select class="form-control" name="role">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                <% } else { %>
+                    <!-- If admin already exists, force user role -->
+                    <input type="hidden" name="role" value="user">
+                <% } %>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-                    <i class="fas fa-lock input-icon"></i>
                 </div>
-                
-                <div class="terms-check">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+
+                <div class="terms-check mb-3">
+                    <input type="checkbox" name="terms" required> I agree to Terms & Privacy Policy
                 </div>
-                
+
                 <button type="submit" class="btn btn-register">Create Account</button>
+
             </form>
-            
-            <div class="login-link">
+
+            <div class="login-link mt-3 text-center">
                 Already have an account? <a href="/login">Sign In</a>
             </div>
+
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const passwordStrength = document.getElementById('passwordStrength');
-            const registerForm = document.getElementById('registerForm');
-            
-            // Password strength indicator
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                let strength = 0;
-                
-                if (password.length >= 8) strength++;
-                if (/[A-Z]/.test(password)) strength++;
-                if (/[0-9]/.test(password)) strength++;
-                if (/[^A-Za-z0-9]/.test(password)) strength++;
-                
-                // Reset classes
-                passwordStrength.className = 'strength-bar';
-                
-                // Apply strength classes
-                if (strength <= 1) {
-                    passwordStrength.classList.add('strength-weak');
-                } else if (strength <= 3) {
-                    passwordStrength.classList.add('strength-medium');
-                } else {
-                    passwordStrength.classList.add('strength-strong');
-                }
-            });
-            
-            // Form validation
-            registerForm.addEventListener('submit', function(e) {
-                let isValid = true;
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                
-                // Check if passwords match
-                if (password !== confirmPassword) {
-                    alert('Passwords do not match!');
-                    isValid = false;
-                }
-                
-                // Check password strength
-                if (password.length < 8) {
-                    alert('Password must be at least 8 characters long!');
-                    isValid = false;
-                }
-                
-                if (!isValid) {
-                    e.preventDefault();
-                }
-            });
-            
-            // Real-time password match indicator
-            confirmPasswordInput.addEventListener('input', function() {
-                const password = passwordInput.value;
-                const confirmPassword = this.value;
-                
-                if (confirmPassword && password !== confirmPassword) {
-                    this.style.borderColor = 'var(--error-color)';
-                } else if (confirmPassword) {
-                    this.style.borderColor = 'var(--success-color)';
-                } else {
-                    this.style.borderColor = '#e1e5ee';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
