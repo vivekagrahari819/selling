@@ -8,12 +8,25 @@ router.get('/', (req, res) => res.render('index'));
 router.get('/about', (req, res) => res.render('about'));
 router.get('/contact', (req, res) => res.render('contact'));
 router.get('/login', (req, res) => res.render('login'));
-router.get('/register', (req, res) => res.render('register'));
+
+router.get('/register', async (req, res) => {
+  const adminExists = await User.findOne({ role: "admin" });
+
+  res.render("register", {
+    message: "",
+    messageType: "",
+    adminExists: adminExists ? true : false
+  });
+});
+
+
 router.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login');
   });
 });
+
+
 
 // Handle registration
 router.post('/register', async (req, res) => {
@@ -28,20 +41,35 @@ router.post('/register', async (req, res) => {
       return res.render('register', { message: 'Passwords do not match', messageType: 'error' });
     }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.render('register', { message: 'User already exists', messageType: 'error' });
+    // Check if admin already exists
+    const adminExists = await User.findOne({ role: "admin" });
+
+    if (adminExists && role === "admin") {
+      return res.render('register', { 
+        message: 'Admin account already exists. You cannot create another admin.', 
+        messageType: 'error' 
+      });
     }
 
+    // Check if user already exists by email
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.render('register', { 
+        message: 'User already exists', 
+        messageType: 'error' 
+      });
+    }
+
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Save user with role
+    // Save new user
     const newUser = new User({
       fullName,
       email,
       phone,
       password: hashedPassword,
-      role: role   // <-- 🟢 This will save admin or user
+      role: role === "admin" && !adminExists ? "admin" : "user" // Prevent admin creation
     });
 
     await newUser.save();
@@ -56,6 +84,7 @@ router.post('/register', async (req, res) => {
     res.render('register', { message: 'Error during registration', messageType: 'error' });
   }
 });
+
 
 
 router.post('/login', async (req, res) => {
