@@ -1,0 +1,20 @@
+<h2 class="text-center">All Products</h2>
+
+<div class="row">
+    <% products.forEach(product => { %>
+        <div class="col-md-4">
+            <div class="card p-3 mb-4">
+                <img src="<%= product.image %>" class="card-img-top" height="200">
+
+                <h4><%= product.name %></h4>
+                <p><%= product.description %></p>
+                <h5>₹<%= product.price %></h5>
+
+                <% if (user && user.role === 'admin') { %>
+                    <a href="/admin/product/edit/<%= product._id %>" class="btn btn-warning">Edit</a>
+                    <a href="/admin/product/delete/<%= product._id %>" class="btn btn-danger">Delete</a>
+                <% } %>
+            </div>
+        </div>
+    <% }); %>
+</div>

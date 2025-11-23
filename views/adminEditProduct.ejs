@@ -1,0 +1,14 @@
+<h2>Edit Product</h2>
+
+<form action="/admin/product/update/<%= product._id %>" method="POST">
+
+    <input type="text" name="name" value="<%= product.name %>" class="form-control mb-2">
+
+    <input type="number" name="price" value="<%= product.price %>" class="form-control mb-2">
+
+    <textarea name="description" class="form-control mb-2"><%= product.description %></textarea>
+
+    <input type="text" name="image" value="<%= product.image %>" class="form-control mb-2">
+
+    <button class="btn btn-primary">Update Product</button>
+</form>
