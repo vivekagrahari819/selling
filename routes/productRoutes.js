@@ -76,8 +76,9 @@ router.post('/admin/product/update/:id', isAdmin, async (req, res) => {
 
 // ADMIN — DELETE
 router.get('/admin/product/delete/:id', isAdmin, async (req, res) => {
-  await Product.findByIdAndDelete(req.params.id);
-  res.redirect('/products');
-});
+    await Product.findByIdAndDelete(req.params.id);
+    res.redirect('/products');
+  });
+  
 
 module.exports = router;

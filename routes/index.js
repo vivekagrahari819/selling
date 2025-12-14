@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
+
 // Pages
 router.get('/', (req, res) => res.render('index'));
 router.get('/about', (req, res) => res.render('about'));
@@ -93,32 +94,40 @@ router.post('/login', async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.render('login', { message: 'Invalid email or password', messageType: 'error' });
+      return res.render('login', {
+        message: 'Invalid email or password',
+        messageType: 'error'
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.render('login', { message: 'Invalid email or password', messageType: 'error' });
+      return res.render('login', {
+        message: 'Invalid email or password',
+        messageType: 'error'
+      });
     }
 
-    // Store user + role
+    // ✅ FIXED SESSION
     req.session.user = {
+      _id: user._id,        // ⭐ VERY IMPORTANT
       name: user.fullName,
       email: user.email,
-      role: user.role   // ⭐ NEW
+      role: user.role
     };
 
-    // If Admin —> redirect to admin dashboard
     if (user.role === "admin") {
       return res.redirect('/admin/dashboard');
     }
 
-    // If Normal user —> redirect to homepage
     res.redirect('/');
 
   } catch (error) {
     console.error('Login error:', error);
-    res.render('login', { message: 'An error occurred', messageType: 'error' });
+    res.render('login', {
+      message: 'An error occurred',
+      messageType: 'error'
+    });
   }
 });
 
