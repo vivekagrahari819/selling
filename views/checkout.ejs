@@ -1,0 +1,98 @@
+<% include partials/navbar %>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<div class="container mt-5">
+  <h2 class="mb-4">Checkout</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% cart.products.forEach(item => { %>
+        <tr>
+          <td><%= item.productId.name %></td>
+          <td>₹<%= item.productId.price %></td>
+          <td><%= item.quantity %></td>
+          <td>₹<%= item.productId.price * item.quantity %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <h4 class="text-end mt-3">
+    Grand Total: ₹<%= totalAmount %>
+  </h4>
+
+  <div class="text-end mt-4">
+   
+  <!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
+
+<button class="btn btn-success btn-lg" onclick="payNow()">
+  Pay ₹<%= totalAmount %>
+</button>
+
+<script>
+function payNow() {
+    fetch("/create-order", { method: "POST" })
+    .then(res => res.json())
+    .then(data => {
+
+        const options = {
+            key: "rzp_test_qwUWbYhsbam1oJ",
+            amount: data.amount,
+            currency: "INR",
+            order_id: data.orderId,
+            name: "Selling.com",
+            description: "Order Payment",
+
+            handler: function (response) {
+                // ✅ PAYMENT SUCCESS
+                fetch("/verify-payment", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(response)
+                })
+                .then(res => res.json())
+                .then(() => {
+                    window.location.href = "/payment-success";
+                });
+            },
+
+            modal: {
+                ondismiss: function () {
+                    // ❌ USER CLOSED PAYMENT
+                    window.location.href = "/payment-failed";
+                }
+            }
+        };
+
+        const rzp = new Razorpay(options);
+
+        // ❌ PAYMENT FAILED
+        rzp.on('payment.failed', function (response) {
+            fetch("/payment-failed-log", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(response.error)
+            }).then(() => {
+                window.location.href = "/payment-failed";
+            });
+        });
+
+        rzp.open();
+    });
+}
+</script>
+
+
+
+
+  </div>
+</div>

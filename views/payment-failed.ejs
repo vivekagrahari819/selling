@@ -1,0 +1,13 @@
+<% include partials/navbar %>
+
+<div class="container text-center mt-5">
+    <h2 class="text-danger">Payment Failed ❌</h2>
+    <p class="lead">Sorry, your payment could not be processed.</p>
+
+    <% if (cartCount && cartCount > 0) { %>
+        <p>You still have <strong><%= cartCount %></strong> item(s) in your cart. Please try again.</p>
+    <% } %>
+
+    <a href="/cart" class="btn btn-warning mt-3">Go Back to Cart</a>
+    <a href="/products" class="btn btn-primary mt-3">Continue Shopping</a>
+</div>

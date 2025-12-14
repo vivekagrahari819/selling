@@ -1,0 +1,49 @@
+<% include partials/navbar %>
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">
+    <% if (user.role === 'admin') { %>
+      All Orders
+    <% } else { %>
+      My Orders
+    <% } %>
+  </h2>
+
+  <% if (!orders || orders.length === 0) { %>
+    <p class="text-center">No orders found</p>
+  <% } %>
+
+  <% orders.forEach(order => { %>
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <b>Order ID:</b> <%= order._id %><br>
+        <% if (user.role === 'admin') { %>
+          <b>User:</b> <%= order.userId.name %> (<%= order.userId.email %>)<br>
+        <% } %>
+        <b>Date:</b> <%= order.createdAt.toDateString() %><br>
+        <b>Status:</b> <span class="text-success"><%= order.status %></span>
+      </div>
+
+      <div class="card-body">
+        <% order.products.forEach(item => { %>
+          <% let product = item.productId; %>
+          <div class="d-flex align-items-center mb-3">
+            <img src="<%= product.image %>" height="70" class="me-3">
+            <div>
+              <h6><%= product.name %></h6>
+              <p>₹<%= item.price %> × <%= item.quantity %></p>
+            </div>
+          </div>
+        <% }) %>
+
+        <hr>
+        <h5 class="text-end">Total: ₹<%= order.totalAmount %></h5>
+
+        <!-- Invoice Download Button -->
+        <div class="text-end mt-2">
+          <a href="/orders/<%= order._id %>/invoice" class="btn btn-sm btn-primary">Download Invoice PDF</a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

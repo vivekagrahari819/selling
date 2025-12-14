@@ -1,0 +1,13 @@
+<% include partials/navbar %>
+
+<div class="container text-center mt-5">
+    <h2 class="text-success">Payment Successful 🎉</h2>
+    <p class="lead">Thank you for your purchase, <%= user ? user.name : 'Guest' %>!</p>
+
+    <% if (cartCount && cartCount > 0) { %>
+        <p>You still have <strong><%= cartCount %></strong> item(s) in your cart.</p>
+    <% } %>
+
+    <a href="/products" class="btn btn-primary mt-3">Continue Shopping</a>
+    <a href="/orders" class="btn btn-success mt-3">View Orders</a>
+</div>

@@ -1,3 +1,4 @@
+
 <% include partials/navbar %>
 
 <h2 class="text-center">All Products</h2>
@@ -12,12 +13,25 @@
                 <p><%= product.description %></p>
                 <h5>₹<%= product.price %></h5>
 
+
+                <form action="/cart/add/<%= product._id %>" method="POST">
+                    <label>Quantity:</label>
+                    <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" style="width: 100px;">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+                
+
+
+
                 <% if (user && user.role === 'admin') { %>
                     <a href="/admin/product/edit/<%= product._id %>" class="btn btn-warning">Edit</a>
-                    <a href="/admin/product/delete/<%= product._id %>" class="btn btn-danger">Delete</a>
+                    <a href="/admin/product/delete/<%= product._id %>" 
+                        class="btn btn-danger"
+                        onclick="return confirm('Are you sure you want to delete this product?');">
+                        Delete
+                     </a>
                 <% } %>
             </div>
         </div>
     <% }); %>
 </div>
-
